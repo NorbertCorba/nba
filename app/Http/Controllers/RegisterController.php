@@ -8,8 +8,12 @@ use App\Models\User;
 
 class RegisterController extends Controller
 {
-    public function create() {
 
+    public function __construct() {
+        $this->middleware('guest', ['except' => 'index']);
+    }
+
+    public function create() {
 
         return view('auth.register');
     }
@@ -26,9 +30,7 @@ class RegisterController extends Controller
 
         $user->save();
 
-        // auth()->login($user);
-
-        session()->flash('message', 'Registration is successful');
+        auth()->logout($user);
 
         return redirect('/');
     }
