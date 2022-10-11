@@ -1,4 +1,6 @@
 @extends('layouts.master')
+@extends('partials.header')
+
 
 @section('title', 'Teams')
 
